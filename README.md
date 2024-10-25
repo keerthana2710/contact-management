@@ -66,15 +66,15 @@ This project is a Contact Management API built with Next.js and Prisma. It allow
    ```bash
    git clone <repository-url>
    cd contact-management-app
-Install Dependencies
+Install Dependencies :
 
-bash
-Copy code
 npm install
+
 Environment Variables Create a .env file in the root of the project and add the following variables:
 
 env
-Copy code
+
+
 DATABASE_URL="your_database_url"
 JWT_SECRET_KEY="your_jwt_secret"
 EMAIL_USER="your_email"
@@ -83,6 +83,25 @@ Running the Backend Server
 To start the development server, run:
 
 bash
-Copy code
+
 npm run dev
 The server will be running at http://localhost:3000.
+
+
+##Api endpoints
+Authentication End Points :
+
+   https://contact-management-47g3.vercel.app/api/auth/register
+   https://contact-management-47g3.vercel.app/api/auth/login
+   https://contact-management-47g3.vercel.app/api/auth/verify-email
+   https://contact-management-47g3.vercel.app/api/auth/request-reset-password
+
+Contact management End points :
+   https://contact-management-47g3.vercel.app/api/contacts/add
+   https://contact-management-47g3.vercel.app/api/contacts/get
+   https://contact-management-47g3.vercel.app/api/contacts/update?id=${}
+   https://contact-management-47g3.vercel.app/api/contacts/delete?id=${}
+
+
+
+   

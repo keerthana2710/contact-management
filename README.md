@@ -103,5 +103,48 @@ Contact management End points :
    https://contact-management-47g3.vercel.app/api/contacts/delete?id=${}
 
 
+Er Diagram Explaination 
+
+
+1. User Model
+Purpose: Represents users of the system.
+Fields:
+id: Primary key, automatically incremented.
+email: Unique field for each user's email.
+password: Stores the user's password.
+name: Optional field for the user's name.
+emailVerified: Boolean indicating if the email is verified (default: false).
+createdAt: Timestamp of account creation.
+updatedAt: Timestamp updated automatically when the user record changes.
+Relationships:
+One-to-many relationship with VerificationToken (a user can have multiple verification tokens).
+One-to-many relationship with Contact (a user can have multiple contacts).
+2. VerificationToken Model
+Purpose: Represents tokens for user actions such as email verification or password reset.
+Fields:
+id: Primary key, automatically incremented.
+token: Unique field for each token.
+type: Type of token, e.g., "emailVerification" or "passwordReset".
+expiresAt: Expiry date of the token.
+userId: Foreign key linking to the User model.
+Relationships:
+Belongs to a single User, as indicated by the foreign key userId.
+3. Contact Model
+Purpose: Represents contact information associated with a user.
+Fields:
+id: Primary key, automatically incremented.
+name: Name of the contact.
+email: Unique email address of the contact.
+phoneNumber: Optional phone number for the contact.
+address: Optional address for the contact.
+timezone: Optional field for the contact’s timezone.
+isDeleted: Boolean indicating if the contact is deleted (soft delete, default: false).
+userId: Foreign key linking to the User model.
+Relationships:
+Each contact belongs to a single User via userId.
+Relationships Summary
+User has a one-to-many relationship with VerificationToken and Contact.
+VerificationToken and Contact each have a many-to-one relationship with User through their userId fields.
+
 
    

@@ -2,7 +2,6 @@
 
 import { NextApiRequest, NextApiResponse } from 'next';
 import { PrismaClient } from '@prisma/client';
-import jwt from 'jsonwebtoken';
 
 const prisma = new PrismaClient();
 
@@ -15,7 +14,6 @@ export default async function verifyEmail(req: NextApiRequest, res: NextApiRespo
 
   try {
     // Verify the token
-    const decoded = jwt.verify(token as string, process.env.JWT_SECRET_KEY!) as { userId: number };
 
     // Find the verification token and associated user
     const verificationToken = await prisma.verificationToken.findUnique({

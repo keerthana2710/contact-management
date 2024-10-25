@@ -12,10 +12,15 @@ export default async function getContacts(req: NextApiRequest, res: NextApiRespo
   if (email) where.email = { contains: email as string, mode: 'insensitive' };
   if (timezone) where.timezone = { contains: timezone as string, mode: 'insensitive' };
 
-  const orderBy: any = {};
-  if (typeof sort === 'string') {
-    orderBy[sort] = 'asc';
-  }
+interface OrderBy {
+    [key: string]: 'asc' | 'desc'; // Only allows 'asc' or 'desc' as values
+}
+
+const orderBy: OrderBy = {}; // More specific type
+if (typeof sort === 'string') {
+    orderBy[sort] = 'asc'; // Now, TypeScript can check the types
+}
+
 
   try {
     const contacts = await prisma.contact.findMany({
